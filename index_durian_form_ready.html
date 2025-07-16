@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>แบบสอบถามเกษตรกรผู้ปลูกทุเรียน</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: #eaf7ea;
+      padding: 40px;
+    }
+    .container {
+      background: #ffffff;
+      padding: 30px;
+      max-width: 800px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 128, 0, 0.1);
+      border-left: 6px solid #66bb6a;
+    }
+    h2 {
+      text-align: center;
+      color: #2e7d32;
+    }
+    label {
+      display: block;
+      margin-top: 20px;
+      font-weight: 600;
+      color: #2e7d32;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      border: 1px solid #c8e6c9;
+      border-radius: 5px;
+      background-color: #f1f8e9;
+      box-sizing: border-box;
+    }
+    button {
+      margin-top: 30px;
+      padding: 12px 30px;
+      background-color: #66bb6a;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #4caf50;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>แบบสอบถามเกษตรกรผู้ปลูกทุเรียน</h2>
+    <form id="durianForm">
+      <label>1. ชื่อ - สกุล</label>
+      <input type="text" name="name" required>
+      <label>2. จังหวัดที่ปลูกทุเรียน</label>
+      <input type="text" name="province" required>
+      <label>3. พื้นที่ปลูกทุเรียน (ไร่)</label>
+      <select name="area" required>
+        <option value="">-- กรุณาเลือก --</option>
+        <option>น้อยกว่า 5 ไร่</option>
+        <option>5 – 10 ไร่</option>
+        <option>11 – 20 ไร่</option>
+        <option>มากกว่า 20 ไร่</option>
+      </select>
+      <label>4. พันธุ์ทุเรียนที่ปลูก</label>
+      <textarea name="variety" required></textarea>
+      <label>5. ระยะเวลาที่ปลูก</label>
+      <select name="period" required>
+        <option value="">-- กรุณาเลือก --</option>
+        <option>น้อยกว่า 1 ปี</option>
+        <option>1–3 ปี</option>
+        <option>4–7 ปี</option>
+        <option>มากกว่า 7 ปี</option>
+      </select>
+      <label>6. ปุ๋ยที่ใช้หลักในสวน</label>
+      <select name="fertilizer" required>
+        <option value="">-- กรุณาเลือก --</option>
+        <option>ปุ๋ยเคมี</option>
+        <option>ปุ๋ยอินทรีย์</option>
+        <option>ปุ๋ยคีเลตทางใบ</option>
+        <option>ใช้ร่วมกันหลายแบบ</option>
+      </select>
+      <label>7. ปัญหาหลักที่พบ</label>
+      <textarea name="problem" required></textarea>
+      <label>8. เคยได้รับคำแนะนำจากนักวิชาการหรือไม่</label>
+      <select name="advice" required>
+        <option value="">-- กรุณาเลือก --</option>
+        <option>เคย และได้รับประโยชน์</option>
+        <option>เคย แต่ไม่ตรงจุด</option>
+        <option>ไม่เคยเลย</option>
+      </select>
+      <label>9. อยากพัฒนาเรื่องใดในสวนมากที่สุด</label>
+      <select name="develop" required>
+        <option value="">-- กรุณาเลือก --</option>
+        <option>เพิ่มผลผลิต</option>
+        <option>ลดต้นทุน</option>
+        <option>แก้ปัญหาโรคพืช</option>
+        <option>ใช้เทคโนโลยีใหม่ ๆ</option>
+        <option>เพิ่มช่องทางการตลาด</option>
+      </select>
+      <label>10. ต้องการรับข้อมูลผ่านช่องทางใด</label>
+      <select name="channel" required>
+        <option value="">-- กรุณาเลือก --</option>
+        <option>Facebook</option>
+        <option>LINE</option>
+        <option>โทรศัพท์</option>
+        <option>YouTube / วิดีโอ</option>
+        <option>เข้ามาเยี่ยมชมสวน</option>
+      </select>
+      <button type="submit">ส่งแบบสอบถาม และเข้าสู่เว็บไซต์</button>
+    </form>
+  </div>
+  <script>
+    document.getElementById('durianForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = {
+        name: form.name.value,
+        province: form.province.value,
+        area: form.area.value,
+        variety: form.variety.value,
+        period: form.period.value,
+        fertilizer: form.fertilizer.value,
+        problem: form.problem.value,
+        advice: form.advice.value,
+        develop: form.develop.value,
+        channel: form.channel.value
+      };
+      fetch("https://script.google.com/macros/s/AKfycbwQanKM1MRnDdU9BHLzKjIEuAFaO4lgNBX5FvAQMCGJ9kqWi4hOmLFgDKmcoYUl3MWeIQ/exec", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }).then(res => {
+        if (res.ok) {
+          window.location.href = "https://heyzine.com/flip-book/633c182a20.html#page/1";
+        } else {
+          alert("เกิดข้อผิดพลาดในการส่งข้อมูล");
+        }
+      }).catch(() => {
+        alert("ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์");
+      });
+    });
+  </script>
+</body>
+</html>
